@@ -12,6 +12,7 @@
 @interface OZMBVoice ()
 
 @property (strong, nonatomic) AVSpeechSynthesizer *speechSynthesizer;
+@property (strong, nonatomic) AVSpeechSynthesisVoice *speechVoice;
 
 @end
 
@@ -32,13 +33,19 @@
 
 -(void)readString:(NSString *)stringToSpeak
 {
-    [_speechSynthesizer speakUtterance:[AVSpeechUtterance speechUtteranceWithString:stringToSpeak]];
+    AVSpeechUtterance *speechUtterance = [AVSpeechUtterance speechUtteranceWithString:stringToSpeak];
+    
+    if (_speechVoice != nil) {
+        [speechUtterance setVoice:_speechVoice];
+    }
+    
+    [_speechSynthesizer speakUtterance:speechUtterance];
 }
 
 
 -(void)setLanguage:(NSString *)nation
 {
-    
+    _speechVoice = [AVSpeechSynthesisVoice voiceWithLanguage:nation];
 }
 
 

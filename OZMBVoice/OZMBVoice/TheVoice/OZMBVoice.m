@@ -35,4 +35,11 @@
     [_speechSynthesizer speakUtterance:[AVSpeechUtterance speechUtteranceWithString:stringToSpeak]];
 }
 
+
+-(void)setLanguage:(NSString *)nation
+{
+    
+}
+
+
 @end
